@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01</title>
+  <script src="../build/react.js"></script>
+  <!--dom相关的功能--咳咳,什么功能???能够渲染出dom???虚拟dom?-->
+  <script src="../build/react-dom.js"></script>
+  <!--将react的jsx语法转换为js语法, 很需要时间哦,那么放在服务器端去进行~~~ 哈哈,以后用node.js时,那么如何在本地转译后放到服务器上呢~~~-->
+  <script src="../build/browser.min.js"></script>
+</head>
+<body>
+
+<div id="example-label"></div>
+<div id="example-arr1"></div>
+<div id="example-arr2"></div>
+
+  <script type="text/babel">
+    // <input type='text' value='hello'/> 这种情况下,会导致input框是readonly,值不可更改.要么绑定onchange事件,要么设置defaultValue属性
+    ReactDOM.render(
+      <h1> 哈哈  <br/>
+        <input type='text' defaultValue='hello'/> <br/>
+        <input type='text' value='hello'/>
+      </h1>,
+      document.getElementById('example-label')
+    );
+
+    var arr1 = [
+      <span key="span1">span1</span>, <span key="span2">span2</span>
+    ];
+
+    var arr2 = ['amy', 'sunny'];
+
+    // map arr1
+    ReactDOM.render(
+      <div onclick="console.log(1);">
+        {
+          arr1.map( function( name, index ){
+          console.log( name );
+          console.log( index );
+          return <div key={'index' + index } onclick="console.log(2);"> {name} , {'index' + index } ,这是我加入的语句</div> ;
+          })
+        }
+      </div>,
+      document.getElementById('example-arr1')
+    );
+
+    // 直接解析数组,交给react了
+    ReactDOM.render(
+      <div> {arr1} {arr2}</div>,
+      document.getElementById('example-arr2')
+    );
+  </script>
+</body>
+</html>
