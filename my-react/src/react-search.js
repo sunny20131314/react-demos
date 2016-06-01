@@ -25,7 +25,11 @@
 
 var ProductCategoryRow = React.createClass({
   render: function() {
-    return (<tr><th colSpan="2">{this.props.category}</th></tr>);
+    return (
+      <tr>
+        <th colSpan="2">{this.props.category}</th>
+      </tr>
+    );
   }
 });
 
@@ -49,6 +53,8 @@ var ProductTable = React.createClass({
   render: function() {
     var rows = [];
     var lastCategory = null;
+
+    console.log( this.props );
 
     this.props.products.forEach(function(product) {
 
@@ -85,7 +91,7 @@ var ProductTable = React.createClass({
 
 var SearchBar = React.createClass({
   handleChange: function() {
-    // 这个this的指向? ——> 当前的这个组件
+    // 这个this的指向? -> 当前的这个组件
     this.props.User(
       this.refs.filterTextInput.value,
       this.refs.inStockOnlyInput.checked
@@ -196,11 +202,6 @@ var FilterableProductTable = React.createClass({
 });
 
 
-ReactDOM.render(
-  <FilterableProductTable products={PRODUCTS} />,
-  document.getElementById('container')
-);
-
 var PRODUCTS = [
   {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
   {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
@@ -209,3 +210,19 @@ var PRODUCTS = [
   {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
   {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
 ];
+
+ReactDOM.render(
+  <FilterableProductTable products={PRODUCTS} />,
+  document.getElementById('container1')
+);
+
+// 已经指定了 value ，但是 input 依然可以未经允许就改变。
+// 这种情况，可能是因为一不小将 value 设置成了 undefined 或 null。
+var mountNode = document.getElementById('input');
+//ReactDOM.render(<input value="hi" />, mountNode);
+
+setTimeout(function() {
+  ReactDOM.render(<input value={undefined} />, mountNode);
+}, 5000);
+
+

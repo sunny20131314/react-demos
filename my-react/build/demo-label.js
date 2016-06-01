@@ -1,8 +1,14 @@
 // <input type='text' value='hello'/> 这种情况下,会导致input框是readonly,值不可更改.要么绑定onchange事件,要么设置defaultValue属性
 
 ReactDOM.render(
-  React.createElement("h1", null, " 哈哈  ", React.createElement("br", null), 
-    React.createElement("input", {type: "text", defaultValue: "hello"}), " ", React.createElement("br", null), 
+  React.createElement("p", null, " 哈哈", 
+    React.createElement("br", null), 
+    "这里使用了 defaultValue,只是赋予了默认值,值可以改变:", 
+    React.createElement("br", null), 
+    React.createElement("input", {type: "text", defaultValue: "hello", onchange: ""}), " ", React.createElement("br", null), 
+    React.createElement("br", null), 
+    "这里使用了 value,值改变不了(", React.createElement("a", {href: " http://reactjs.cn/react/docs/forms.html"}, "点我看详情"), "):", 
+    React.createElement("br", null), 
     React.createElement("input", {type: "text", value: "hello"})
   ),
   document.getElementById('example-label')
@@ -19,9 +25,9 @@ ReactDOM.render(
   React.createElement("div", {onclick: "console.log(1);"}, 
     
       arr1.map( function( name, index ){
-      console.log( name );
-      console.log( index );
-      return React.createElement("div", {key: 'index' + index, onclick: "console.log(2);"}, " ", name, " , ", 'index' + index, " ,这是我加入的语句") ;
+        console.log( name );
+        console.log( index );
+        return React.createElement("div", {key: 'index' + index, onclick: "console.log(2);"}, " ", name, " , ", 'index' + index, " ,这是我加入的语句") ;
       })
     
   ),

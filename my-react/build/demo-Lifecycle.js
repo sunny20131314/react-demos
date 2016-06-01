@@ -18,9 +18,9 @@
   * componentDidMount() : 在挂载结束之后马上被调用。需要DOM节点的初始化操作应该放在这里。
   *
   * 更新:
-  * componentWillReceiveProps(object nextProps)当一个挂载的组件接收到新的props的时候被调用。
+  * componentWillReceiveProps(object nextProps) : 已加载组件收到新的参数时调用.当一个挂载的组件接收到新的props的时候被调用。
   *         该方法应该用于比较this.props和nextProps，然后使用this.setState()来改变state。
-  * shouldComponentUpdate(object nextProps, object nextState):
+  * shouldComponentUpdate(object nextProps, object nextState): 组件判断是否重新渲染时调用
   *         boolean当组件做出是否要更新DOM的决定的时候被调用。
   *         实现该函数，优化this.props和nextProps，以及this.state和nextState的比较，
   *         如果不需要React更新DOM，则返回false。
@@ -29,10 +29,10 @@
   * componentDidUpdate(object prevProps, object prevState)
   *         在更新发生之后调用。
   *
-  * componentWillUnmount()
+  * 移除:
+  * componentWillUnmount() : 立即调用前一个组件卸载从DOM。
+  *         在该方法中执行任何必要的清理，如无效计时器或清理在componentDidMount中创建的任何DOM元素.
   *
-  * componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用
-  * shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用
   * */
 
 var Lifecycle = React.createClass({displayName: "Lifecycle",
@@ -50,6 +50,8 @@ var Lifecycle = React.createClass({displayName: "Lifecycle",
     }
   },
 
+  //因为 componentWillReceiveProps 经常会处理一些和 old props 比较的逻辑，而且会在变化之前执行；
+  // 不在组件即将渲染的时候触发，这也是这个方法设计的初衷。
   componentWillReceiveProps: function(nextProps) {
   // 当一个组件接收新的props时调用。不会触发componentWillReceiveProps。
   // 当一个container多次插入不同的dom时--(其余情况不详), 尽管props可能没有改变,组件也会机会检验新的props和采取相应的行动。
@@ -75,9 +77,6 @@ var Lifecycle = React.createClass({displayName: "Lifecycle",
   },
 
   componentWillUnmount: function(){
-  // 立即调用前一个组件卸载从DOM。
-  // 在该方法中执行任何必要的清理，如无效计时器或清理在componentDidMount中创建的任何DOM元素。
-
     console.log( 'componentWillUnmount' );
   },
 

@@ -2,14 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>01</title>
-  <script src="../build/react.js"></script>
-
-  <!--dom相关的功能--咳咳,什么功能???能够渲染出dom???虚拟dom?-->
-  <script src="../build/react-dom.js"></script>
-
-  <!--将react的jsx语法转换为js语法, 很需要时间哦,那么放在服务器端去进行~~~ 哈哈,以后用node.js时,那么如何在本地转译后放到服务器上呢~~~-->
-  <!--<script src="../build/browser.min.js"></script>-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>label</title>
 </head>
 <body>
 
@@ -17,6 +11,18 @@
 <div id="example-arr1"></div>
 <div id="example-arr2"></div>
 
+
+<!--[if lte IE 9]>
+<script src="../build/es5-shim.min.js" async></script>
+<script src="../build/es5-sham.min.js" async></script>
+<![endif]-->
+
+<!--<script src="../build/react-0.14.0.js"></script>-->
+<script src="../react-0.14.7/build/react-with-addons.min.js"></script>
+
+<script src="../react-0.14.7/build/react-dom.min.js"></script>
+
 <script src="build/demo-label.js"> </script>
+
 </body>
 </html>
